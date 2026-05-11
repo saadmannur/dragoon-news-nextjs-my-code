@@ -8,7 +8,7 @@ import { FaEye, FaStar } from 'react-icons/fa';
 import { IoShareSocialOutline } from 'react-icons/io5';
 
 const NewsCard = ({ news }) => {
-    console.log(news)
+    // console.log(news)
     const { title,} = news
     return (
         <div className='rounded-xl'>

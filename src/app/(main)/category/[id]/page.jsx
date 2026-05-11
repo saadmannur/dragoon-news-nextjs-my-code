@@ -10,7 +10,7 @@ export const metadata = {
 
 const NewsCategoryPage = async ({ params }) => {
     const { id } = await params;
-    console.log(id);
+    // console.log(id);
 
     const categories = await getCategories();
     const allCategories = categories.data.news_category;
@@ -19,16 +19,16 @@ const NewsCategoryPage = async ({ params }) => {
     const allNews = news.data;
     return (
 
-        <div className="container mx-auto my-10 grid grid-cols-14 gap-4">
-            <div className="  col-span-3">
+        <div className="container mx-auto my-10 grid md:grid-cols-14 gap-4">
+            <div className="  md:col-span-3">
                 <LeftSideBar allCategories={allCategories} isActive={id}></LeftSideBar>
             </div>
 
-            <div className="col-span-8">
+            <div className="md:col-span-8">
                 <AllNews allNews={allNews}></AllNews>
             </div>
 
-            <div className="col-span-3">
+            <div className="md:col-span-3">
                 <RightSideBar></RightSideBar>
             </div>
 

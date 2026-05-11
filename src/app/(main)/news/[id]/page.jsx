@@ -21,12 +21,12 @@ const NewsDetailsPage = async ({ params }) => {
     const details = newsDetails.data[0];
 
     return (
-        <div className="container mx-auto my-10 grid grid-cols-14 gap-6">
-            <div className="  col-span-11">
+        <div className="container mx-auto my-10 grid md:grid-cols-14 gap-6">
+            <div className="  md:col-span-11">
                 <NewsDetails details={details}></NewsDetails>
             </div>
 
-            <div className="col-span-3">
+            <div className="md:col-span-3">
                 <RightSideBar></RightSideBar>
             </div>
 
