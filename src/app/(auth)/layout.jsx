@@ -10,7 +10,9 @@ const AuthLayout = ({ children }) => {
     return (
         <div className={`${montserrat.className}`}>
             <Navbar></Navbar>
-            {children}
+            <main className='bg-base-300 h-full pt-10'>
+                {children}
+            </main>
         </div>
     );
 };

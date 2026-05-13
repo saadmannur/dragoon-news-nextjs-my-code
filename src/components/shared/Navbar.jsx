@@ -25,7 +25,7 @@ const Navbar = () => {
                     height={40}
                 ></Image>
                 <button className='btn btn-neutral'><Link href={"/login"}>Login</Link></button>
-                <button className='btn btn-neutral'><Link href={"/register"}>Register</Link></button>
+                {/* <button className='btn btn-neutral'><Link href={"/register"}>Register</Link></button> */}
             </div>
         </div>
     );
