@@ -1,47 +1,55 @@
 "use client"
+import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 
 
 const LoginPage = () => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, formState: { errors }, watch } = useForm();
 
-    // const { register, handleSubmit, watch, formState:{errors}} = useForm();
-
-    // console.log(errors);
     // // console.log(watch());
     // // const watchEmail = watch("email");
     // // const watchPassword = watch("password");
 
-    const handleFormFunc = (data) => {
+    const handleFormFunc = async (data) => {
         // console.log(data);
+        const { data: res, error } = await authClient.signIn.email({
+            email: data.email, // required
+            password: data.password, // required
+            rememberMe: true,
+            callbackURL: "/",
+        });
+        // console.log(res, error)
     }
 
+    const [showPassword, setShowPassword] = useState(false)
+
     return (
-        <div className='container mx-auto flex justify-center items-center pb-20'>
-            <div className='bg-white p-20 w- mx-auto shadow rounded-2xl'>
-                <h2 className='text-3xl font-bold text-center'>Login Your Account</h2>
+        <div className='container mx-auto flex justify-center items-center '>
+            <div className='bg-white md:p-20 mx-auto md:shadow rounded-2xl'>
+                <h2 className='text-4xl font-bold text-center'>Login Your Account</h2>
                 <div className='divider'></div>
                 <div>
                     <form onSubmit={handleSubmit(handleFormFunc)}>
-                        <fieldset className="fieldset">
-                            <label className="label">Email</label>
+                        <fieldset className="fieldset relative">
+                            <label className="label font-semibold">Email</label>
                             <input
                                 {...register("email", {
                                     required: "This is required",
                                 })}
                                 type="email"
-                                className="input"
+                                className="input w-full"
                                 placeholder="Email"
                             />
                             <p className='text-red-500'>{errors.email?.message}</p>
 
                             {/* <p>{watchEmail}</p> */}
 
-                            <label className="label">Password</label>
+                            <label className="label font-semibold">Password</label>
                             <input
                                 {...register("password", {
                                     required: "This is required",
@@ -50,10 +58,19 @@ const LoginPage = () => {
                                         message: "Minimum length 8"
                                     }
                                 })}
-                                type="password"
-                                className="input"
+                                type={showPassword ? "text" : "password"}
+                                className="input w-full"
                                 placeholder="Password"
                             />
+                            <span
+                            className='absolute top-28 right-4 cursor-pointer' 
+                            onClick={() => setShowPassword(!showPassword)}>
+                                {
+                                    showPassword ?
+                                        <span className='text-xl'><FaEye /></span> :
+                                        <span className='text-xl'><FaEyeSlash /></span>
+                                }
+                            </span>
                             <p className='text-red-500'>{errors.password?.message}</p>
 
                             {/* <p>{watchPassword}</p>  */}

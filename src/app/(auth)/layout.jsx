@@ -8,9 +8,9 @@ export const metadata = {
 
 const AuthLayout = ({ children }) => {
     return (
-        <div className={`${montserrat.className}`}>
+        <div className={`${montserrat.className} m-5 md: m-0`}>
             <Navbar></Navbar>
-            <main className='bg-base-300 h-full pt-10'>
+            <main className='md:bg-base-300 h-full md:pt-10'>
                 {children}
             </main>
         </div>
