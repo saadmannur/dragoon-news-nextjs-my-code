@@ -37,9 +37,9 @@ const AuthSection = () => {
                             <Image
                                 src={user?.image}
                                 alt={user.name}
-                                width={42}
-                                height={42}
-                                className='rounded-full w-[42px] h-[42px] object-cover'
+                                width={50}
+                                height={50}
+                                className='rounded-full w-[50px] h-[50px] object-cover'
                             ></Image>
 
                             <button
