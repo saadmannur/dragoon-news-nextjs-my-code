@@ -44,7 +44,7 @@ const AuthSection = () => {
 
                             <button
                                 onClick={handleSignOut}
-                             className='btn btn-neutral'>LogOut</button>
+                             className='btn btn-primary'>LogOut</button>
 
                         </div>
                     ) :

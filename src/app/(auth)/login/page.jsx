@@ -3,7 +3,7 @@ import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from 'react-icons/fa';
 
 
 
@@ -27,6 +27,17 @@ const LoginPage = () => {
     }
 
     const [showPassword, setShowPassword] = useState(false)
+
+    const handleGoogleSignin = async () => {
+            const data = await authClient.signIn.social({
+                provider: "google",
+            });
+        }
+        const handleGithubSignin = async () => {
+            const data = await authClient.signIn.social({
+                provider: "github"
+            });
+        }
 
     return (
         <div className='container mx-auto flex justify-center items-center '>
@@ -63,8 +74,8 @@ const LoginPage = () => {
                                 placeholder="Password"
                             />
                             <span
-                            className='absolute top-28 right-4 cursor-pointer' 
-                            onClick={() => setShowPassword(!showPassword)}>
+                                className='absolute top-28 right-4 cursor-pointer'
+                                onClick={() => setShowPassword(!showPassword)}>
                                 {
                                     showPassword ?
                                         <span className='text-xl'><FaEye /></span> :
@@ -79,6 +90,20 @@ const LoginPage = () => {
                             <button className="btn btn-neutral mt-4">Login</button>
                         </fieldset>
                     </form>
+                    <div className='my-5 flex gap-4'>
+                        <button
+                            onClick={handleGoogleSignin}
+                        className='btn border border-blue-500 text-blue-500'>
+                            <FaGoogle />
+                            Login With Google
+                        </button>
+                        <button 
+                            onClick={handleGithubSignin}
+                        className='btn'>
+                            <FaGithub />
+                            Login With Github
+                        </button>
+                    </div>
                 </div>
                 <p className='text-center my-5'>
                     Do not Have An Account ?
