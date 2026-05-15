@@ -28,7 +28,7 @@ const RegisterPage = () => {
         }
         if (res) {
             alert("Sign Up Successful")
-            redirect('/login')
+            redirect('/')
         }
     }
 

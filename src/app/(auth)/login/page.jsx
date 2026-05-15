@@ -24,20 +24,27 @@ const LoginPage = () => {
             callbackURL: "/",
         });
         // console.log(res, error)
+        if (error) {
+            alert(error.message)
+        }
+        if (res) {
+            alert("Login Successful")
+            redirect('/')
+        }
     }
 
     const [showPassword, setShowPassword] = useState(false)
 
     const handleGoogleSignin = async () => {
-            const data = await authClient.signIn.social({
-                provider: "google",
-            });
-        }
-        const handleGithubSignin = async () => {
-            const data = await authClient.signIn.social({
-                provider: "github"
-            });
-        }
+        const data = await authClient.signIn.social({
+            provider: "google",
+        });
+    }
+    const handleGithubSignin = async () => {
+        const data = await authClient.signIn.social({
+            provider: "github"
+        });
+    }
 
     return (
         <div className='container mx-auto flex justify-center items-center '>
@@ -93,13 +100,13 @@ const LoginPage = () => {
                     <div className='my-5 flex gap-4'>
                         <button
                             onClick={handleGoogleSignin}
-                        className='btn border border-blue-500 text-blue-500'>
+                            className='btn border border-blue-500 text-blue-500'>
                             <FaGoogle />
                             Login With Google
                         </button>
-                        <button 
+                        <button
                             onClick={handleGithubSignin}
-                        className='btn'>
+                            className='btn'>
                             <FaGithub />
                             Login With Github
                         </button>
